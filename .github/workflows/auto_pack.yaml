@@ -5,18 +5,8 @@ on:
     types: [published]
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest, windows-2019, windows-2022]
-        arch: [x86, x64, arm64]
-        exclude:
-          # Exclude unsupported combinations
-          - os: windows-2019
-            arch: arm64
-          - os: windows-2022
-            arch: arm64
+  build-x64:
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
@@ -25,25 +15,89 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
       with:
-        msbuild-architecture: ${{ matrix.arch }}
+        msbuild-architecture: x64
 
     - name: Restore NuGet packages
       run: nuget restore HideOrShowTaskbar.sln  # 替换为您的解决方案文件名
 
     - name: Build project
       run: |
-        msbuild /p:Configuration=Release /p:Platform=${{ matrix.arch }} HideOrShowTaskbar.csproj
+        msbuild /p:Configuration=Release /p:Platform=x64 HideOrShowTaskbar.csproj
 
     - name: Create artifacts directory
-      run: mkdir artifacts-${{ matrix.os }}-${{ matrix.arch }}
+      run: mkdir artifacts-x64
 
     - name: Copy EXE to artifacts directory
       run: |
-        copy /Y "YourProject\bin\Release\${{ matrix.arch }}\HideOrShowTaskbar.exe" artifacts-${{ matrix.os }}-${{ matrix.arch }}\
+        copy /Y "YourProject\bin\Release\x64\HideOrShowTaskbar.exe" artifacts-x64\
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: HideOrShowTaskbar-${{ matrix.os }}-${{ matrix.arch }}
-        path: artifacts-${{ matrix.os }}-${{ matrix.arch }}\HideOrShowTaskbar.exe
+        name: HideOrShowTaskbar-x64
+        path: artifacts-x64\HideOrShowTaskbar.exe
+        compression-level: 0
+  build-x86:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+      with:
+        msbuild-architecture: x86
+
+    - name: Restore NuGet packages
+      run: nuget restore HideOrShowTaskbar.sln  # 替换为您的解决方案文件名
+
+    - name: Build project
+      run: |
+        msbuild /p:Configuration=Release /p:Platform=x86 HideOrShowTaskbar.csproj
+
+    - name: Create artifacts directory
+      run: mkdir artifacts-x86
+
+    - name: Copy EXE to artifacts directory
+      run: |
+        copy /Y "YourProject\bin\Release\x86\HideOrShowTaskbar.exe" artifacts-x86\
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: HideOrShowTaskbar-x86
+        path: artifacts-x86\HideOrShowTaskbar.exe
+        compression-level: 0
+  build-arm64:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+      with:
+        msbuild-architecture: arm64
+
+    - name: Restore NuGet packages
+      run: nuget restore HideOrShowTaskbar.sln  # 替换为您的解决方案文件名
+
+    - name: Build project
+      run: |
+        msbuild /p:Configuration=Release /p:Platform=arm64 HideOrShowTaskbar.csproj
+
+    - name: Create artifacts directory
+      run: mkdir artifacts-arm64
+
+    - name: Copy EXE to artifacts directory
+      run: |
+        copy /Y "YourProject\bin\Release\arm64\HideOrShowTaskbar.exe" artifacts-arm64\
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: HideOrShowTaskbar-arm64
+        path: artifacts-arm64\HideOrShowTaskbar.exe
         compression-level: 0
