@@ -7,6 +7,8 @@ on:
 jobs:
   build-anycpu:
     runs-on: windows-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
     steps:
     - name: Checkout code
@@ -31,14 +33,16 @@ jobs:
       run: |
         Copy-Item -Path "bin\Release\HideOrShowTaskbar.exe" -Destination "artifacts-anycpu"
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: HideOrShowTaskbar-anycpu
-        path: artifacts-anycpu\HideOrShowTaskbar.exe
-        compression-level: 0
+    - run: cd "artifacts-anycpu"
+
+    - run: Rename-Item -Path HideOrShowTaskbar.exe -NewName HideOrShowTaskbar-anycpu.exe -Force
+
+    - run: gh release upload 1.0.0 HideOrShowTaskbar-anycpu.exe --repo $GITHUB_REPOSITORY
+
   build-x64:
     runs-on: windows-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
     steps:
     - name: Checkout code
@@ -61,16 +65,17 @@ jobs:
 
     - name: Copy EXE to artifacts directory
       run: |
-        Copy-Item -Path "bin\Release\HideOrShowTaskbar.exe" -Destination "artifacts-x64"
+        Copy-Item -Path "bin\x64\Release\HideOrShowTaskbar.exe" -Destination "artifacts-x64"
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: HideOrShowTaskbar-x64
-        path: artifacts-x64\HideOrShowTaskbar.exe
-        compression-level: 0
+    - run: cd "artifacts-x64"
+
+    - run: Rename-Item -Path HideOrShowTaskbar.exe -NewName HideOrShowTaskbar-x64.exe -Force
+
+    - run: gh release upload 1.0.0 HideOrShowTaskbar-x64.exe --repo $GITHUB_REPOSITORY
   build-x86:
     runs-on: windows-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
     steps:
     - name: Checkout code
@@ -93,16 +98,17 @@ jobs:
 
     - name: Copy EXE to artifacts directory
       run: |
-        Copy-Item -Path "bin\Release\HideOrShowTaskbar.exe" -Destination "artifacts-x86"
+        Copy-Item -Path "bin\x86\Release\HideOrShowTaskbar.exe" -Destination "artifacts-x86"
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: HideOrShowTaskbar-x86
-        path: artifacts-x86\HideOrShowTaskbar.exe
-        compression-level: 0
+    - run: cd "artifacts-x86"
+
+    - run: Rename-Item -Path HideOrShowTaskbar.exe -NewName HideOrShowTaskbar-x86.exe -Force
+
+    - run: gh release upload 1.0.0 HideOrShowTaskbar-x86.exe --repo $GITHUB_REPOSITORY
   build-arm64:
     runs-on: windows-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
     steps:
     - name: Checkout code
@@ -125,11 +131,10 @@ jobs:
 
     - name: Copy EXE to artifacts directory
       run: |
-        Copy-Item -Path "bin\Release\HideOrShowTaskbar.exe" -Destination "artifacts-arm64"
+        Copy-Item -Path "bin\arm64\Release\HideOrShowTaskbar.exe" -Destination "artifacts-arm64"
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: HideOrShowTaskbar-arm64
-        path: artifacts-arm64\HideOrShowTaskbar.exe
-        compression-level: 0
+    - run: cd "artifacts-arm64"
+
+    - run: Rename-Item -Path HideOrShowTaskbar.exe -NewName HideOrShowTaskbar-arm64.exe -Force
+
+    - run: gh release upload 1.0.0 HideOrShowTaskbar-arm64.exe --repo $GITHUB_REPOSITORY
