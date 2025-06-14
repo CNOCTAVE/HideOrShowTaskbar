@@ -1,0 +1,47 @@
+name: Multi-Architecture Build
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, windows-2019, windows-2022]
+        arch: [x86, x64, arm64]
+        exclude:
+          # Exclude unsupported combinations
+          - os: windows-2019
+            arch: arm64
+          - os: windows-2022
+            arch: arm64
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Restore NuGet packages
+      run: nuget restore HideOrShowTaskbar.sln  # 替换为您的解决方案文件名
+
+    - name: Build project
+      run: |
+        msbuild /p:Configuration=Release /p:Platform=${{ matrix.arch }} HideOrShowTaskbar.csproj
+
+    - name: Create artifacts directory
+      run: mkdir artifacts-${{ matrix.os }}-${{ matrix.arch }}
+
+    - name: Copy EXE to artifacts directory
+      run: |
+        copy /Y "YourProject\bin\Release\${{ matrix.arch }}\HideOrShowTaskbar.exe" artifacts-${{ matrix.os }}-${{ matrix.arch }}\
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: HideOrShowTaskbar-${{ matrix.os }}-${{ matrix.arch }}
+        path: artifacts-${{ matrix.os }}-${{ matrix.arch }}\HideOrShowTaskbar.exe
+        compression-level: 0
