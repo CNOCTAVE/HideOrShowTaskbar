@@ -27,12 +27,9 @@ jobs:
     - name: Create artifacts directory
       run: mkdir artifacts-anycpu
 
-    - name: Switch to CMD
-      run: cmd
-
     - name: Copy EXE to artifacts directory
       run: |
-        copy /Y "HideOrShowTaskbar\bin\Release\anycpu\HideOrShowTaskbar.exe" artifacts-anycpu\
+        Copy-Item -Path "HideOrShowTaskbar\bin\Release\anycpu\HideOrShowTaskbar.exe" -Destination "artifacts-anycpu"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
@@ -62,12 +59,9 @@ jobs:
     - name: Create artifacts directory
       run: mkdir artifacts-x64
 
-    - name: Switch to CMD
-      run: cmd
-
     - name: Copy EXE to artifacts directory
       run: |
-        copy /Y "HideOrShowTaskbar\bin\Release\x64\HideOrShowTaskbar.exe" artifacts-x64\
+        Copy-Item -Path "HideOrShowTaskbar\bin\Release\x64\HideOrShowTaskbar.exe" -Destination "artifacts-x64"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
@@ -97,12 +91,9 @@ jobs:
     - name: Create artifacts directory
       run: mkdir artifacts-x86
 
-    - name: Switch to CMD
-      run: cmd
-
     - name: Copy EXE to artifacts directory
       run: |
-        copy /Y "HideOrShowTaskbar\bin\Release\x86\HideOrShowTaskbar.exe" artifacts-x86\
+        Copy-Item -Path "HideOrShowTaskbar\bin\Release\x86\HideOrShowTaskbar.exe" -Destination "artifacts-x86"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
@@ -132,12 +123,9 @@ jobs:
     - name: Create artifacts directory
       run: mkdir artifacts-arm64
 
-    - name: Switch to CMD
-      run: cmd
-
     - name: Copy EXE to artifacts directory
       run: |
-        copy /Y "HideOrShowTaskbar\bin\Release\arm64\HideOrShowTaskbar.exe" artifacts-arm64\
+        Copy-Item -Path "HideOrShowTaskbar\bin\Release\arm64\HideOrShowTaskbar.exe" -Destination "artifacts-arm64"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
