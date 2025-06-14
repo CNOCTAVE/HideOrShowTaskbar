@@ -31,7 +31,7 @@ jobs:
 
     - run: Rename-Item -Path "bin\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-anycpu.exe" -Force
 
-    - run: gh release upload 1.0.0 "bin\Release\HideOrShowTaskbar-anycpu.exe" --repo $GITHUB_REPOSITORY
+    - run: cd "bin\Release"; gh release upload 1.0.0 HideOrShowTaskbar-anycpu.exe --repo $GITHUB_REPOSITORY
 
   build-x64:
     runs-on: windows-latest
@@ -57,9 +57,9 @@ jobs:
     - name: Create artifacts directory
       run: mkdir artifacts-x64
 
-    - run: Rename-Item -Path "bin\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-x64.exe" -Force
+    - run: Rename-Item -Path "bin\x64\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-x64.exe" -Force
 
-    - run: gh release upload 1.0.0 "bin\Release\HideOrShowTaskbar-x64.exe" --repo $GITHUB_REPOSITORY
+    - run: cd "bin\x64\Release"; gh release upload 1.0.0 HideOrShowTaskbar-x64.exe --repo $GITHUB_REPOSITORY
   build-x86:
     runs-on: windows-latest
     env:
@@ -84,9 +84,9 @@ jobs:
     - name: Create artifacts directory
       run: mkdir artifacts-x86
 
-    - run: Rename-Item -Path "bin\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-x86.exe" -Force
+    - run: Rename-Item -Path "bin\x86\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-x86.exe" -Force
 
-    - run: gh release upload 1.0.0 "bin\Release\HideOrShowTaskbar-x86.exe" --repo $GITHUB_REPOSITORY
+    - run: cd "bin\x86\Release"; gh release upload 1.0.0 HideOrShowTaskbar-x86.exe --repo $GITHUB_REPOSITORY
   build-arm64:
     runs-on: windows-latest
     env:
@@ -111,6 +111,6 @@ jobs:
     - name: Create artifacts directory
       run: mkdir artifacts-arm64
 
-    - run: Rename-Item -Path "bin\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-arm64.exe" -Force
+    - run: Rename-Item -Path "bin\arm64\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-arm64.exe" -Force
 
-    - run: gh release upload 1.0.0 "bin\Release\HideOrShowTaskbar-arm64.exe" --repo $GITHUB_REPOSITORY
+    - run: cd "bin\arm64\Release"; gh release upload 1.0.0 HideOrShowTaskbar-arm64.exe --repo $GITHUB_REPOSITORY
