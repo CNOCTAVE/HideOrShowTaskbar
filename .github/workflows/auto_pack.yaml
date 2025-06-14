@@ -29,7 +29,7 @@ jobs:
 
     - name: Copy EXE to artifacts directory
       run: |
-        Copy-Item -Path "bin\Release\anycpu\HideOrShowTaskbar.exe" -Destination "artifacts-anycpu"
+        Copy-Item -Path "bin\Release\HideOrShowTaskbar.exe" -Destination "artifacts-anycpu"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
@@ -61,7 +61,7 @@ jobs:
 
     - name: Copy EXE to artifacts directory
       run: |
-        Copy-Item -Path "bin\Release\x64\HideOrShowTaskbar.exe" -Destination "artifacts-x64"
+        Copy-Item -Path "bin\Release\HideOrShowTaskbar.exe" -Destination "artifacts-x64"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
@@ -93,7 +93,7 @@ jobs:
 
     - name: Copy EXE to artifacts directory
       run: |
-        Copy-Item -Path "bin\Release\x86\HideOrShowTaskbar.exe" -Destination "artifacts-x86"
+        Copy-Item -Path "bin\Release\HideOrShowTaskbar.exe" -Destination "artifacts-x86"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
@@ -125,7 +125,7 @@ jobs:
 
     - name: Copy EXE to artifacts directory
       run: |
-        Copy-Item -Path "bin\Release\arm64\HideOrShowTaskbar.exe" -Destination "artifacts-arm64"
+        Copy-Item -Path "bin\Release\HideOrShowTaskbar.exe" -Destination "artifacts-arm64"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
