@@ -29,15 +29,9 @@ jobs:
     - name: Create artifacts directory
       run: mkdir artifacts-anycpu
 
-    - name: Copy EXE to artifacts directory
-      run: |
-        Copy-Item -Path "bin\Release\HideOrShowTaskbar.exe" -Destination "artifacts-anycpu"
+    - run: Rename-Item -Path "bin\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-anycpu.exe" -Force
 
-    - run: cd "artifacts-anycpu"
-
-    - run: Rename-Item -Path HideOrShowTaskbar.exe -NewName HideOrShowTaskbar-anycpu.exe -Force
-
-    - run: gh release upload 1.0.0 HideOrShowTaskbar-anycpu.exe --repo $GITHUB_REPOSITORY
+    - run: gh release upload 1.0.0 "bin\Release\HideOrShowTaskbar-anycpu.exe" --repo $GITHUB_REPOSITORY
 
   build-x64:
     runs-on: windows-latest
@@ -63,15 +57,9 @@ jobs:
     - name: Create artifacts directory
       run: mkdir artifacts-x64
 
-    - name: Copy EXE to artifacts directory
-      run: |
-        Copy-Item -Path "bin\x64\Release\HideOrShowTaskbar.exe" -Destination "artifacts-x64"
+    - run: Rename-Item -Path "bin\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-x64.exe" -Force
 
-    - run: cd "artifacts-x64"
-
-    - run: Rename-Item -Path HideOrShowTaskbar.exe -NewName HideOrShowTaskbar-x64.exe -Force
-
-    - run: gh release upload 1.0.0 HideOrShowTaskbar-x64.exe --repo $GITHUB_REPOSITORY
+    - run: gh release upload 1.0.0 "bin\Release\HideOrShowTaskbar-x64.exe" --repo $GITHUB_REPOSITORY
   build-x86:
     runs-on: windows-latest
     env:
@@ -96,15 +84,9 @@ jobs:
     - name: Create artifacts directory
       run: mkdir artifacts-x86
 
-    - name: Copy EXE to artifacts directory
-      run: |
-        Copy-Item -Path "bin\x86\Release\HideOrShowTaskbar.exe" -Destination "artifacts-x86"
+    - run: Rename-Item -Path "bin\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-x86.exe" -Force
 
-    - run: cd "artifacts-x86"
-
-    - run: Rename-Item -Path HideOrShowTaskbar.exe -NewName HideOrShowTaskbar-x86.exe -Force
-
-    - run: gh release upload 1.0.0 HideOrShowTaskbar-x86.exe --repo $GITHUB_REPOSITORY
+    - run: gh release upload 1.0.0 "bin\Release\HideOrShowTaskbar-x86.exe" --repo $GITHUB_REPOSITORY
   build-arm64:
     runs-on: windows-latest
     env:
@@ -129,12 +111,6 @@ jobs:
     - name: Create artifacts directory
       run: mkdir artifacts-arm64
 
-    - name: Copy EXE to artifacts directory
-      run: |
-        Copy-Item -Path "bin\arm64\Release\HideOrShowTaskbar.exe" -Destination "artifacts-arm64"
+    - run: Rename-Item -Path "bin\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-arm64.exe" -Force
 
-    - run: cd "artifacts-arm64"
-
-    - run: Rename-Item -Path HideOrShowTaskbar.exe -NewName HideOrShowTaskbar-arm64.exe -Force
-
-    - run: gh release upload 1.0.0 HideOrShowTaskbar-arm64.exe --repo $GITHUB_REPOSITORY
+    - run: gh release upload 1.0.0 "bin\Release\HideOrShowTaskbar-arm64.exe" --repo $GITHUB_REPOSITORY
