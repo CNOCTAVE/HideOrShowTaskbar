@@ -31,7 +31,7 @@ jobs:
 
     - run: Rename-Item -Path "bin\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-anycpu.exe" -Force
 
-    - run: cd "bin\Release"; gh release upload 1.0.0 HideOrShowTaskbar-anycpu.exe --repo $GITHUB_REPOSITORY
+    - run: cd "bin\Release"; gh release upload 1.0.0 HideOrShowTaskbar-anycpu.exe --repo ${{ github.repository }}"
 
   build-x64:
     runs-on: windows-latest
@@ -59,7 +59,7 @@ jobs:
 
     - run: Rename-Item -Path "bin\x64\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-x64.exe" -Force
 
-    - run: cd "bin\x64\Release"; gh release upload 1.0.0 HideOrShowTaskbar-x64.exe --repo $GITHUB_REPOSITORY
+    - run: cd "bin\x64\Release"; gh release upload 1.0.0 HideOrShowTaskbar-x64.exe --repo ${{ github.repository }}"
   build-x86:
     runs-on: windows-latest
     env:
@@ -86,7 +86,7 @@ jobs:
 
     - run: Rename-Item -Path "bin\x86\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-x86.exe" -Force
 
-    - run: cd "bin\x86\Release"; gh release upload 1.0.0 HideOrShowTaskbar-x86.exe --repo $GITHUB_REPOSITORY
+    - run: cd "bin\x86\Release"; gh release upload 1.0.0 HideOrShowTaskbar-x86.exe --repo ${{ github.repository }}"
   build-arm64:
     runs-on: windows-latest
     env:
@@ -113,4 +113,4 @@ jobs:
 
     - run: Rename-Item -Path "bin\arm64\Release\HideOrShowTaskbar.exe" -NewName "HideOrShowTaskbar-arm64.exe" -Force
 
-    - run: cd "bin\arm64\Release"; gh release upload 1.0.0 HideOrShowTaskbar-arm64.exe --repo $GITHUB_REPOSITORY
+    - run: cd "bin\arm64\Release"; gh release upload 1.0.0 HideOrShowTaskbar-arm64.exe --repo ${{ github.repository }}"
