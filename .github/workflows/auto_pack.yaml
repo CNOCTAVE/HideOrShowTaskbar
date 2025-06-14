@@ -25,7 +25,7 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
       with:
-        vs-version: '[17.9,17.10)'
+        msbuild-architecture: ${{ matrix.arch }}
 
     - name: Restore NuGet packages
       run: nuget restore HideOrShowTaskbar.sln  # 替换为您的解决方案文件名
