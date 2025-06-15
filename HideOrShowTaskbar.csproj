@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- fedora-wsl-manager is an open source Fedora WSL manager packed by electron
+<!-- HideOrShowTaskbar - Hide Or Show Taskbar of Windows
 Copyright (C) 2024-2025  Yu Hongbo, CNOCTAVE
 
 This program is free software: you can redistribute it and/or modify
@@ -122,6 +122,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>. -->
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -180,6 +183,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>. -->
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
